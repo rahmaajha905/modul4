@@ -9,9 +9,9 @@ class Laporan extends Model
     protected $table = 'laporan';
 
     protected $fillable = [
-        'nama_pelapor',
-        'lokasi',
-        'tinggi_genangan',
-        'tanggal_kejadian',
-    ];
+    'nama_pelapor',
+    'lokasi',
+    'tinggi_genangan',
+    'tanggal_kejadian',
+];
 }

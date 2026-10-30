@@ -28,7 +28,16 @@
             </div>
         @endif
 
-        <form action="{{ route('laporan.proses') }}" method="POST">
+        @if (session('success'))
+            <div class="success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        <form action="{{ route('laporan.proses') }}"
+              method="POST"
+              enctype="multipart/form-data">
+
             @csrf
 
             <label for="nama_pelapor">Nama Pelapor</label>
@@ -41,13 +50,33 @@
                 required
             >
 
-            <label for="lokasi">Lokasi Kejadian (Kecamatan/Desa)</label>
+            <label for="no_hp">Nomor HP</label>
+            <input
+                type="text"
+                id="no_hp"
+                name="no_hp"
+                placeholder="Masukkan nomor HP"
+                value="{{ old('no_hp') }}"
+                required
+            >
+
+            <label for="lokasi">Lokasi Kejadian</label>
             <input
                 type="text"
                 id="lokasi"
                 name="lokasi"
-                placeholder="Contoh: Kecamatan Lembang"
+                placeholder="Contoh: Desa Jayagiri"
                 value="{{ old('lokasi') }}"
+                required
+            >
+
+            <label for="kecamatan">Kecamatan</label>
+            <input
+                type="text"
+                id="kecamatan"
+                name="kecamatan"
+                placeholder="Contoh: Lembang"
+                value="{{ old('kecamatan') }}"
                 required
             >
 
@@ -62,12 +91,26 @@
                 required
             >
 
-            
+            <label for="keterangan">Keterangan</label>
+            <textarea
+                id="keterangan"
+                name="keterangan"
+                placeholder="Jelaskan kondisi banjir di lokasi">{{ old('keterangan') }}</textarea>
+
+            <label for="foto">Foto Kejadian</label>
+            <input
+                type="file"
+                id="foto"
+                name="foto"
+                accept="image/*"
+            >
+
             <label for="tanggal_kejadian">Tanggal Kejadian</label>
             <input
                 type="date"
                 id="tanggal_kejadian"
                 name="tanggal_kejadian"
+                value="{{ old('tanggal_kejadian') }}"
                 required
             >
 
@@ -76,6 +119,12 @@
             </button>
 
         </form>
+
+        <p style="text-align: center; margin-top: 20px;">
+            <a href="{{ route('laporan.index') }}">
+                Lihat Daftar Laporan
+            </a>
+        </p>
 
     </div>
 </div>
@@ -92,4 +141,3 @@
 
 </body>
 </html>
-

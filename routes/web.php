@@ -2,15 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LaporBanjirController;
+use App\Http\Controllers\LaporanController;
 
-
+// Halaman form laporan
 Route::get('/', [LaporBanjirController::class, 'index'])
     ->name('form');
 
-
-Route::post('/laporan', [LaporBanjirController::class, 'proses'])
+// Proses pengiriman laporan dari form utama
+Route::post('/laporan/simpan', [LaporBanjirController::class, 'proses'])
     ->name('laporan.proses');
 
-
-Route::get('/laporan', [LaporBanjirController::class, 'laporan'])
-    ->name('laporan.index');
+// Fitur CRUD laporan
+Route::resource('laporan', LaporanController::class);
